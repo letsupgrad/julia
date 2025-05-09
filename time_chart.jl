@@ -1,10 +1,25 @@
+using Pkg
+Pkg.activate(".")  # Ensure we're in the correct environment
+
+# Required packages
 using Plots
 using Dates
 
-# Create time series data
-dates = Date(2024, 1, 1):Day(1):Date(2024, 1, 10)
-values = rand(10)  # random values for plotting
+# Generate synthetic time data
+dates = Date(2023, 1, 1):Day(1):Date(2023, 1, 30)
+values = rand(30) .* 100
 
-# Plot time chart
-plot(dates, values, label="Random Data", xlabel="Date", ylabel="Value", title="Time Chart")
-savefig("time_chart.png")  # save the plot as an image
+# Plot the time series
+plot(dates, values,
+     xlabel="Date",
+     ylabel="Value",
+     title="Time Series Chart",
+     seriestype=:line,
+     lw=2,
+     legend=false,
+     fmt=:png)
+
+# Save plot
+savefig("time_series_chart.png")
+println("Chart saved as 'time_series_chart.png'")
+
